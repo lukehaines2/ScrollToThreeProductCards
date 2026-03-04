@@ -1,0 +1,151 @@
+/* ── Reset ─────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #111;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Spacers ───────────────────────────────────────── */
+
+.spacer {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  opacity: 0.3;
+}
+
+/* ── Journey section ───────────────────────────────── */
+
+.journey {
+  height: 400vh;
+  position: relative;
+  background: #111;
+}
+
+.journey__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.journey__heading {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.journey__heading em {
+  font-style: italic;
+}
+
+/* ── Card row ──────────────────────────────────────── */
+
+.journey__card-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+}
+
+/* ── Card — 3D container ───────────────────────────── */
+
+.card {
+  position: relative;
+  width: 420px;
+  height: 300px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+/* ── Card faces ────────────────────────────────────── */
+
+.card__front,
+.card__back {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+/* ── Front face ────────────────────────────────────── */
+
+.card__front img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.card--left   .card__front img { object-position: left center; }
+.card--centre .card__front img { object-position: center center; }
+.card--right  .card__front img { object-position: right center; }
+
+/* ── Back face ─────────────────────────────────────── */
+
+.card__back {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+}
+
+.card__icon {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  font-size: 1.4rem;
+  opacity: 0.7;
+}
+
+.card__back h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.card__back p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+/* Back-face colour variants (matches reference images) */
+.card--left .card__back {
+  background: #c8c0b8;
+  color: #1a1a1a;
+}
+
+.card--centre .card__back {
+  background: #d03030;
+  color: #fff;
+}
+
+.card--right .card__back {
+  background: #222;
+  color: #fff;
+}
