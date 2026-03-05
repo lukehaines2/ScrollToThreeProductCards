@@ -5,8 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scroll to Three Product Cards</title>
     <link rel="stylesheet" href="./index.css" />
+    <style>
+      .build-header { font-family: system-ui, -apple-system, sans-serif; padding: 0.75rem 1rem; background: #1a1a1a; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; border-bottom: 1px solid #333; }
+      .build-header h1 { margin: 0; font-size: 1.25rem; font-weight: 600; color: #fff; }
+      .build-header nav { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .build-header a { display: block; padding: 0.5rem 1rem; background: #2d2d2d; color: #e0e0e0; text-decoration: none; border-radius: 8px; border: 1px solid #444; font-size: 0.875rem; transition: background 0.2s, border-color 0.2s; }
+      .build-header a:hover { background: #3d3d3d; border-color: #666; }
+      .build-header a.is-current { opacity: 0.7; pointer-events: none; }
+    </style>
   </head>
   <body>
+    <header class="build-header">
+      <h1>Codex Build</h1>
+      <nav>
+        <a href="../Opus%20Build/index.html">Opus Build</a>
+        <a href="index.html" class="is-current">Codex Build</a>
+        <a href="../Gemini%20Build/index.html">Gemini Build</a>
+      </nav>
+    </header>
     <section class="journey">
       <div class="journey__sticky">
         <h2 class="journey__heading">Where are you in your journey?</h2>
