@@ -64,6 +64,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0px;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 /* ── Card — 3D container ───────────────────────────── */
@@ -74,7 +76,7 @@ body {
   height: 300px;
   transform-style: preserve-3d;
   will-change: transform;
-  border-radius: 16px;
+  border-radius: 0px;
   flex-shrink: 0;
 }
 
@@ -94,15 +96,14 @@ body {
 
 .card__front img {
   display: block;
-  width: 100%;
+  width: 300%;       /* 3x card width = full row */
   height: 100%;
   object-fit: cover;
-  border-radius: inherit;
 }
 
-.card--left   .card__front img { object-position: left center; }
-.card--centre .card__front img { object-position: center center; }
-.card--right  .card__front img { object-position: right center; }
+.card--left   .card__front img { margin-left: 0; }
+.card--centre .card__front img { margin-left: -100%; }
+.card--right  .card__front img { margin-left: -200%; }
 
 /* ── Back face ─────────────────────────────────────── */
 
