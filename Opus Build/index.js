@@ -29,9 +29,9 @@ tl.to({}, { duration: 0.1 });
 
 // ── Phase 1: Split ────────────────────────────────────
 tl.to(".journey__card-row", { gap: "20px", duration: 0.35, ease: "none" })
-  .to(".card", { width: 300, height: 464, duration: 0.35, ease: "none" }, "<")
+  .to(".card", { width: 300, duration: 0.35, ease: "none" }, "<")
   .to(".card", { borderRadius: "16px", duration: 0.35, ease: "none" }, "<")
-  .to(".journey__card-row", { borderRadius: "0px", overflow: "visible", duration: 0.35, ease: "none" }, "<");
+  .to(".journey__card-row", { overflow: "visible", duration: 0.35, ease: "none" }, "<");
 
 // ── Phase 2: Settled ──────────────────────────────────
 tl.to({}, { duration: 0.1 });
