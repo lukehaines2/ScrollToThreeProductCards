@@ -19,25 +19,32 @@ const tl = gsap.timeline({
 /*
   Phase map (proportional durations totalling 1.0):
     0.00 – 0.10  Resting   (no visual change)
-    0.10 – 0.45  Split     (gap opens, cards reshape to portrait)
-    0.45 – 0.55  Settled   (brief pause)
-    0.55 – 1.00  Flip+Fan  (cards flip, left/right tilt outward)
+    0.10 – 0.35  Shrink    (uniform scale to 464 height, aspect ratio preserved)
+    0.35 – 0.50  Split     (unscale + gap + cards reshape to portrait)
+    0.50 – 0.60  Settled   (brief pause)
+    0.60 – 1.00  Flip+Fan  (cards flip, left/right tilt outward)
 */
+
+const scaleTo464 = 464 / 564;
 
 // ── Phase 0: Resting ──────────────────────────────────
 tl.to({}, { duration: 0.1 });
 
-// ── Phase 1: Split ────────────────────────────────────
-tl.to(".journey__card-row", { gap: "20px", duration: 0.35, ease: "none" })
-  .to(".card", { width: 300, duration: 0.35, ease: "none" }, "<")
-  .to(".card", { borderRadius: "16px", duration: 0.35, ease: "none" }, "<")
-  .to(".journey__card-row", { overflow: "visible", duration: 0.35, ease: "none" }, "<");
+// ── Phase 1: Shrink (uniform scale, preserve aspect ratio) ─
+tl.to(".journey__card-row", { scale: scaleTo464, duration: 0.25, ease: "none", force3D: true });
 
-// ── Phase 2: Settled ──────────────────────────────────
+// ── Phase 2: Split (unscale + reshape to portrait) ────────
+tl.to(".journey__card-row", { scale: 1, duration: 0.15, ease: "none", force3D: true })
+  .to(".journey__card-row", { gap: "20px", duration: 0.15, ease: "none" }, "<")
+  .to(".card", { width: 300, height: 464, duration: 0.15, ease: "none" }, "<")
+  .to(".card", { borderRadius: "16px", duration: 0.15, ease: "none" }, "<")
+  .to(".journey__card-row", { overflow: "visible", duration: 0.15, ease: "none" }, "<");
+
+// ── Phase 3: Settled ───────────────────────────────────
 tl.to({}, { duration: 0.1 });
 
-// ── Phase 3: Flip + Fan ───────────────────────────────
-tl.to(".card__front", { rotateY: -180, duration: 0.45, ease: "none", stagger: 0.02 }, "flip")
-  .to(".card__back",  { rotateY: 0,    duration: 0.45, ease: "none", stagger: 0.02 }, "flip")
-  .to(".card--left",  { rotate: -15,   duration: 0.45, ease: "none" }, "flip")
-  .to(".card--right", { rotate: 10,    duration: 0.45, ease: "none" }, "flip");
+// ── Phase 4: Flip + Fan ───────────────────────────────
+tl.to(".card__front", { rotateY: -180, duration: 0.4, ease: "none", stagger: 0.02 }, "flip")
+  .to(".card__back",  { rotateY: 0,    duration: 0.4, ease: "none", stagger: 0.02 }, "flip")
+  .to(".card--left",  { rotate: -15,   duration: 0.4, ease: "none" }, "flip")
+  .to(".card--right", { rotate: 10,    duration: 0.4, ease: "none" }, "flip");

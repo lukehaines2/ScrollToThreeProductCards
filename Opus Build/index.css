@@ -66,6 +66,7 @@ body {
   gap: 0px;
   border-radius: 16px;
   overflow: hidden;
+  transform-origin: center center;
 }
 
 /* ── Card — 3D container ───────────────────────────── */
@@ -73,11 +74,28 @@ body {
 .card {
   position: relative;
   width: 420px;
-  height: 464px;
+  height: 564px;
   transform-style: preserve-3d;
   will-change: transform;
-  border-radius: 0px;
   flex-shrink: 0;
+  margin-right: -1px; /* overlap to hide subpixel gaps during scale */
+}
+
+.card:last-child {
+  margin-right: 0;
+}
+
+/* Outer corners rounded from start (match main image); centre stays sharp until split */
+.card--left {
+  border-radius: 16px 0 0 16px;
+}
+
+.card--centre {
+  border-radius: 0;
+}
+
+.card--right {
+  border-radius: 0 16px 16px 0;
 }
 
 /* ── Card faces ────────────────────────────────────── */
