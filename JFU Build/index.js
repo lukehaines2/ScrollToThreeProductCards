@@ -17,20 +17,34 @@ const tl = gsap.timeline({
 });
 
 /*
-  Phase map (proportional durations totalling 1.0):
-    0.00 – 0.10  Resting             (no visual change)
-    0.10 – 0.35  Shrink + headline   (uniform scale to ~464 height, overlay fades 0.10–0.25)
-    0.35 – 0.50  Split               (unscale + gap + cards reshape to portrait)
-    0.50 – 0.60  Settled             (brief pause)
-    0.60 – 1.00  Flip + Fan          (cards flip, left/right tilt outward)
+  Phase map. The "animation" portion (Phases 1–4) is fixed at 0.9 timeline
+  units; the two hold phases (top rest + bottom dwell) are the user-tunable
+  scroll-feel knobs.
+
+    Phase 0  Resting    duration = TIMELINE_REST_TOP   (no visual change)
+    Phase 1  Shrink + overlay fade (0.25)
+    Phase 2  Split + reshape       (0.15)
+    Phase 3  Settled               (0.10)
+    Phase 4  Flip + Fan            (0.40)
+    Phase 5  Dwell      duration = TIMELINE_DWELL      (cards stay revealed)
+
+  Both knobs are timeline units. ~300vh of scroll = 1.0 timeline unit, so:
+    Top hold scroll  ≈ TIMELINE_REST_TOP × 300vh
+    Bottom hold scroll ≈ TIMELINE_DWELL   × 300vh
+  When changing either, update `.journey { height }` in CSS so total scroll
+  stays in lockstep — formula in the CSS comment.
 */
+
+const TIMELINE_REST_TOP = 0.2;
+const TIMELINE_DWELL    = 0.2;
 
 // Row height is 540 (cards are 540 tall). Split-state target is 450
 // (matches card-back asset ratio: clean 2:3 portrait).
 const scaleToIntermediate = 450 / 540;
 
 // ── Phase 0: Resting ──────────────────────────────────
-tl.to({}, { duration: 0.1 });
+// Top hold before the shrink begins — gives the banner a moment to register.
+tl.to({}, { duration: TIMELINE_REST_TOP });
 
 // ── Phase 1: Shrink + overlay fade ────────────────────
 tl.to(".journey__card-row", { scale: scaleToIntermediate, duration: 0.25, ease: "none", force3D: true });
@@ -56,3 +70,8 @@ tl.to(".card__front", { rotateY: -180, duration: 0.4, ease: "none", stagger: 0.0
   .to(".card__back",  { rotateY: 0,    duration: 0.4, ease: "none", stagger: 0.02 }, "flip")
   .to(".card--left",  { rotate: -15, y: 31, duration: 0.4, ease: "none" }, "flip")
   .to(".card--right", { rotate: 10,  y: 23, duration: 0.4, ease: "none" }, "flip");
+
+// ── Phase 5: Dwell on revealed state ──────────────────
+// Empty tween that consumes timeline time without changing anything visually.
+// With scrub, this means scroll continues but cards stay in their final state.
+tl.to({}, { duration: TIMELINE_DWELL });

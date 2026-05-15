@@ -21,21 +21,22 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── Spacers ───────────────────────────────────────── */
-
-.spacer {
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  opacity: 0.3;
-}
-
 /* ── Journey section ───────────────────────────────── */
 
+/*
+  Section height drives the total scroll length for the pinned animation.
+  Active scroll = (height - 100vh sticky child).
+
+  Timeline total = TIMELINE_REST_TOP (0.2) + animation (0.9) + TIMELINE_DWELL (0.2)
+                 = 1.3 timeline units.
+  300vh of scroll per timeline unit preserves the original POC reveal speed:
+    active scroll = 1.3 × 300vh = 390vh → height = 390vh + 100vh = 490vh.
+
+  Formula when tuning the JS knobs:
+    height = ((TIMELINE_REST_TOP + 0.9 + TIMELINE_DWELL) × 300vh) + 100vh.
+*/
 .journey {
-  height: 400vh;
+  height: 490vh;
   position: relative;
   background: #111;
 }
