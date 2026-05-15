@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JFU Build – Banner with Overlay → Cards</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .build-header { font-family: system-ui, -apple-system, sans-serif; padding: 0.75rem 1rem; background: #1a1a1a; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; border-bottom: 1px solid #333; }
+    .build-header h1 { margin: 0; font-size: 1.25rem; font-weight: 600; color: #fff; }
+    .build-header nav { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .build-header a { display: block; padding: 0.5rem 1rem; background: #2d2d2d; color: #e0e0e0; text-decoration: none; border-radius: 8px; border: 1px solid #444; font-size: 0.875rem; transition: background 0.2s, border-color 0.2s; }
+    .build-header a:hover { background: #3d3d3d; border-color: #666; }
+    .build-header a.is-current { opacity: 0.7; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <header class="build-header">
+    <h1>JFU Build</h1>
+    <nav>
+      <a href="index.html" class="is-current">JFU Build</a>
+      <a href="../Opus%20Build/index.html">Opus Build</a>
+      <a href="../Codex%20Build/index.html">Codex Build</a>
+      <a href="../Gemini%20Build/index.html">Gemini Build</a>
+    </nav>
+  </header>
+
+  <section class="spacer">
+    <p>Scroll down</p>
+  </section>
+
+  <section class="journey">
+    <div class="journey__sticky">
+
+      <div class="journey__card-row">
+
+        <article class="card card--left">
+          <div class="card__front">
+            <img src="https://media.thewhitecompany.com/v/white/MostLoved_CashmereSocks_21x9_dt?protocol=https" alt="">
+          </div>
+          <div class="card__back">
+            <!-- TODO: replace placeholder with hosted product-card image 1 -->
+            <img src="https://placehold.co/600x928/c8c0b8/1a1a1a?text=PRODUCT+CARD+1" alt="Product card 1">
+          </div>
+        </article>
+
+        <article class="card card--centre">
+          <div class="card__front">
+            <img src="https://media.thewhitecompany.com/v/white/MostLoved_CashmereSocks_21x9_dt?protocol=https" alt="">
+          </div>
+          <div class="card__back">
+            <!-- TODO: replace placeholder with hosted product-card image 2 -->
+            <img src="https://placehold.co/600x928/d03030/ffffff?text=PRODUCT+CARD+2" alt="Product card 2">
+          </div>
+        </article>
+
+        <article class="card card--right">
+          <div class="card__front">
+            <img src="https://media.thewhitecompany.com/v/white/MostLoved_CashmereSocks_21x9_dt?protocol=https" alt="">
+          </div>
+          <div class="card__back">
+            <!-- TODO: replace placeholder with hosted product-card image 3 -->
+            <img src="https://placehold.co/600x928/222222/ffffff?text=PRODUCT+CARD+3" alt="Product card 3">
+          </div>
+        </article>
+
+        <div class="journey__overlay">
+          <h2 class="journey__overlay-heading">
+            In pure cashmere verified by The Good Cashmere Standard&reg;.
+          </h2>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="spacer">
+    <p>End of demo</p>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
